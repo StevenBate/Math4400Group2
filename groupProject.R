@@ -17,3 +17,12 @@ data.generate = function(mu1, mu2, s, n , p){
 n = 500
 df = data.generate(1,-1, 1, n, 2)
 head(df)
+
+#Sample and break into training and testing data
+test.index = sample(c(1:dim(df)[1]), floor(n/2),replace = TRUE)
+df.test = df[test.index,]
+df.train = df[-test.index,]
+train.X = df.train[,c("V2", "V3")]
+test.X = df.test[,c("V2", "V3")]
+train.Y = df.train[,c("y")]
+test.Y = df.test[,c("y")]
