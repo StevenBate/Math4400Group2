@@ -55,17 +55,11 @@ generate.lda = function(df.train, df.test){
   return(lda.accuracy)
 }
 
-?lda
-?qda
-head(df)
-
-
 scenario.two = function(){
   n = 500
   df = data.generate(1,-1, 1, n, 2)
   
   for (col in colnames(df)){
-    print(col)
     if (col != "y")
     {
       df[,col] = scale(df[,col])
@@ -85,7 +79,6 @@ scenario.four = function(){
   df = data.generate(1,-1, 1, n, 20)
   
   for (col in colnames(df)){
-    print(col)
     if (col != "y")
     {
       df[,col] = scale(df[,col])
@@ -100,6 +93,8 @@ scenario.four = function(){
   assign("lda.accuracy.four", lda.accuracy, envir = .GlobalEnv)
 }
 
+
+#Main, run from here.
 scenario.two()
 scenario.four()
 
