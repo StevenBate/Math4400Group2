@@ -56,12 +56,12 @@ generate.lda = function(df.train, df.test){
 }
 
 generate.logistic = function(df.train, df.test){
- glm.fit= glm(y ~ . - y,data=df.train, family=binomial)
+ glm.fit= glm(as.factor(y) ~ . - y,data=df.train, family=binomial)
  
  glm.pred = predict(glm.fit, df.test[, -1])
  logistic.accuracy = mean(glm.pred$class==df.test[, 1])
  
- return(glm.accuracy)
+ return(logistic.accuracy)
    
 }
 
