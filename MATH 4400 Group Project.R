@@ -9,7 +9,7 @@ data.generate = function(mu1, mu2, variance, sampleSize, numInputVariables){
   y = as.factor(c(rep(1, sampleSize),rep(2, sampleSize)))
   M = matrix (NA,  nrow = 2* sampleSize, ncol = numInputVariables, byrow = 1) 
   df = data.frame(y)
-  for (i in c(1:p)) {
+  for (i in c(1:numInputVariables)) {
     M[,i] = c(rnorm(sampleSize, mu1, variance), rnorm(sampleSize, mu2, variance))
     #assign(paste("x", i, sep=""),c(rnorm(n,mu1[i],s), rnorm(n,mu2[i],s)) )
   }
