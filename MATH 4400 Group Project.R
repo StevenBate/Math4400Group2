@@ -82,6 +82,7 @@ scenario.two = function(){
   
   assign("qda.accuracy.two", qda.accuracy, envir = .GlobalEnv)
   assign("lda.accuracy.two", lda.accuracy, envir = .GlobalEnv)
+  assign("logistic.accuracy.two", logistic.accuracy, envir = .GlobalEnv)
 }
 
 scenario.three = function(){
@@ -115,10 +116,12 @@ scenario.four = function(){
   
   assign("qda.accuracy.four", qda.accuracy, envir = .GlobalEnv)
   assign("lda.accuracy.four", lda.accuracy, envir = .GlobalEnv)
+  assign("logistic.accuracy.fout", logistic.accuracy, envir = .GlobalEnv)
 }
 
 
 #Main, run from here.
 scenario.two()
+scenario.three()
 scenario.four()
 
