@@ -35,6 +35,15 @@ train_Test_Split = function(df, seed)
   return(test.index)
 }
 
+#KNN algorythm
+generate.knn = function(train.Y, test.X, train.X, test.Y){
+  knn.pred = knn(train.X,test.X,train.Y,k=dim(train.X)[1]*0.1)
+  
+  knn.accuracy = sum(knn.pred == test.Y)/length(test.Y)
+  
+  return(knn.accuracy)
+}
+
 #Qda algorythm
 generate.qda = function(df.train, df.test){
   qda.fit = qda(y ~ . - y, data = df.train)
@@ -67,6 +76,22 @@ generate.logistic = function(df.train, df.test){
   
   return(logistic.accuracy)
   }
+
+scenario.one = function(){
+  n = 50
+  df = data.generate(1, -1, 1, n, 2)
+  
+  test.index = train_Test_Split(df, 1)
+  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
+  qda.accuracy = generate.qda(df.train, df.test)
+  lda.accuracy = generate.lda(df.train, df.test)
+  logistic.accuracy = generate.logistic(df.train, df.test)
+  
+  assign("knn.accuracy.one", knn.accuracy, envir = .GlobalEnv)
+  assign("qda.accuracy.one", qda.accuracy, envir = .GlobalEnv)
+  assign("lda.accuracy.one", lda.accuracy, envir = .GlobalEnv)
+  assign("logistic.accuracy.one", logistic.accuracy, envir = .GlobalEnv)
+}
 
 scenario.two = function(){
   n = 500
