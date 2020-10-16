@@ -1,4 +1,3 @@
-#Start of file
 library('class')
 library(pROC)
 library('MASS')
@@ -77,9 +76,11 @@ generate.logistic = function(df.train, df.test){
   return(logistic.accuracy)
 }
 
-scenario.one = function(){
-  n = 50
-  df = data.generate(1, -1, 1, n, 2)
+plotter = function(){
+  plot(variance)
+}
+
+scenario.one = function(df){
   
   test.index = train_Test_Split(df, 1)
   knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
@@ -93,9 +94,7 @@ scenario.one = function(){
   assign("logistic.accuracy.one", logistic.accuracy, envir = .GlobalEnv)
 }
 
-scenario.two = function(){
-  n = 500
-  df = data.generate(1,-1, 1, n, 2)
+scenario.two = function(df){
   
   for (col in colnames(df)){
     if (col != "y")
@@ -116,9 +115,7 @@ scenario.two = function(){
   assign("logistic.accuracy.two", logistic.accuracy, envir = .GlobalEnv)
 }
 
-scenario.three = function(){
-  n = 50
-  df = data.generate(1, -1, 1, n, 20)
+scenario.three = function(df){
   
   test.index = train_Test_Split(df, 1)
   knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
@@ -132,9 +129,7 @@ scenario.three = function(){
   assign("logistic.accuracy.three", logistic.accuracy, envir = .GlobalEnv)
 }
 
-scenario.four = function(){
-  n = 500
-  df = data.generate(1,-1, 1, n, 20)
+scenario.four = function(df){
   
   for (col in colnames(df)){
     if (col != "y")
@@ -157,10 +152,83 @@ scenario.four = function(){
 
 
 #Main, run from here.
-scenario.one()
-scenario.two()
-scenario.three()
-scenario.four()
+#Can just run these, not part of the assignment
+sampleSize = 50
+df = data.generate(1,-1, 1, sampleSize, 2)
+scenario.one(df)
+sampleSize = 500
+df = data.generate(1,-1, 1, sampleSize, 2)
+scenario.two(df)
+sampleSize = 50
+df = data.generate(1,-1, 1, sampleSize, 2)
+scenario.three(df)
+sampleSize = 500
+df = data.generate(1,-1, 1, sampleSize, 2)
+scenario.four(df)
+
+
+
+#Here for different variances
+variance.list = c(.5, 1, 1.5, 2, 2.5, 3)
+#Scenerio 2
+accuary.qda.list = c()
+accuary.lda.list = c()
+accuary.glm.list = c()
+accuary.knn.list = c()
+
+counter = 0
+for (variance in variance.list){
+  sampleSize = 500
+  df = data.generate(1,-1, variance, sampleSize, 2)
+  scenario.two(df)
+  accuary.qda.list[counter] = qda.accuracy.two
+  accuary.lda.list[counter] = lda.accuracy.two
+  accuary.glm.list[counter] = glm.accuracy.two
+  accuary.knn.list[counter] = knn.accuracy.two
+  counter = counter + 1
+}
+plot(accuracy.qsa.list, variance.list)
+
+
+#Scenerio 3
+accuary.qda.list = c()
+accuary.lda.list = c()
+accuary.glm.list = c()
+accuary.knn.list = c()
+
+counter = 0
+for (variance in variance.list){
+  sampleSize = 50
+  df = data.generate(1, -1, variance, sampleSize, 20)
+  scenario.three(df)
+  accuary.qda.list[counter] = qda.accuracy.three
+  accuary.lda.list[counter] = ldaa.accuracy.three
+  accuary.glm.list[counter] = glm.accuracy.three
+  accuary.knn.list[counter] = knn.accuracy.three
+  counter = counter + 1
+}
+plot(accuracy.qsa.list, variance.list)
+
+
+#Scenerio 4
+accuary.qda.list = c()
+accuary.lda.list = c()
+accuary.glm.list = c()
+accuary.knn.list = c()
+
+counter = 0
+for (variance in variance.list){
+  sampleSize = 500
+  df = data.generate(1, -1, variance, sampleSize, 20)
+  scenario.four(df)
+  accuary.qda.list[counter] = qda.accuracy.four
+  accuary.lda.list[counter] = ldaa.accuracy.four
+  accuary.glm.list[counter] = glm.accuracy.four
+  accuary.knn.list[counter] = knn.accuracy.four
+  counter = counter + 1
+}
+plot(accuracy.qsa.list, variance.list)
+
 
 #used to determine which of the four models had the highest accuracy for each scenario. Useful
 #if we run our scenarios with different seeds. Feel free to edit/optimize.
@@ -170,7 +238,7 @@ determine.max.accuracy = function(){
   ldaAccuracy = c(lda.accuracy.one, lda.accuracy.two, lda.accuracy.three, lda.accuracy.four)
   logAccuracy = c(logistic.accuracy.one, logistic.accuracy.two, logistic.accuracy.three, logistic.accuracy.four)
   accuracyFrame = data.frame=cbind(c(1:4), knnAccuracy, qdaAccuracy, ldaAccuracy, logAccuracy)
-   for(j in 1:4){
+  for(j in 1:4){
     maxMethod <- c(j)
     for(i in 2:5){  
       if(max(accuracyFrame[j, -1])==accuracyFrame[j, i]){
@@ -181,3 +249,14 @@ determine.max.accuracy = function(){
   }
 }
 determine.max.accuracy()
+
+
+
+
+
+
+
+
+
+
+
