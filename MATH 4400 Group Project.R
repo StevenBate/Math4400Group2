@@ -162,3 +162,23 @@ scenario.two()
 scenario.three()
 scenario.four()
 
+#used to determine which of the four models had the highest accuracy for each scenario. Useful
+#if we run our scenarios with different seeds. Feel free to edit/optimize.
+determine.max.accuracy = function(){
+  knnAccuracy = c(knn.accuracy.one, knn.accuracy.two, knn.accuracy.three, knn.accuracy.four)
+  qdaAccuracy = c(qda.accuracy.one, qda.accuracy.two, qda.accuracy.three, qda.accuracy.four)
+  ldaAccuracy = c(lda.accuracy.one, lda.accuracy.two, lda.accuracy.three, lda.accuracy.four)
+  logAccuracy = c(logistic.accuracy.one, logistic.accuracy.two, logistic.accuracy.three, logistic.accuracy.four)
+  accuracyFrame = data.frame=cbind(c(1:4), knnAccuracy, qdaAccuracy, ldaAccuracy, logAccuracy)
+   for(j in 1:4){
+    maxMethod <- c(j)
+    for(i in 2:5){  
+      if(max(accuracyFrame[j, -1])==accuracyFrame[j, i]){
+        maxMethod <- append(maxMethod, colnames(accuracyFrame)[i])
+      }
+    }
+    print(maxMethod)
+  }
+}
+determine.max.accuracy()
+
