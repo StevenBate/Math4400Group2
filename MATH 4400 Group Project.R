@@ -68,14 +68,14 @@ generate.lda = function(df.train, df.test){
 generate.logistic = function(df.train, df.test){
   df.train$y = as.factor(df.train$y)
   df.test$y = as.factor(df.test$y)
-  glm.fit= glm(as.factor(y) ~ . - y,data=df.train, family=binomial)
+  glm.fit = glm(as.factor(y) ~ . - as.factor(y),data=df.train, family=binomial, maxit = 100)
   
   glm.probs = predict(glm.fit, df.test[, -1], type = "response")
-  glm.pred = ifselse(glm.probe > .5, "2", "1")
-  logistic.accuracy = mean(glm.pred$class==df.test[, 1])
+  glm.pred = ifelse(glm.probs > .5, "2", "1")
+  logistic.accuracy = mean(glm.pred==df.test[, 1])
   
   return(logistic.accuracy)
-  }
+}
 
 scenario.one = function(){
   n = 50
