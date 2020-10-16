@@ -183,7 +183,7 @@ scenario.four(df)
 #Here for different variances
 variance.list = c(.5, 1, 1.5, 2, 2.5, 3)
 
-#Scenerio 1
+#Scenario 1
 accuracy.qda.list = c()
 accuracy.lda.list = c()
 accuracy.glm.list = c()
@@ -202,12 +202,12 @@ for (variance in variance.list){
   accuracy.knn.list[counter] = knn.accuracy.one
   counter = counter + 1
 }
-plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
-lines(accuracy.lda.list, variance.list, col = "red")
-lines(accuracy.glm.list, variance.list, col = "yellow")
-lines(accuracy.knn.list, variance.list, col = "black")
+plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
+lines(variance.list, accuracy.lda.list, col = "red", type = "o")
+lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.knn.list, col = "black", type = "o")
 
-#Scenerio 2
+#Scenario 2
 accuracy.qda.list = c()
 accuracy.lda.list = c()
 accuracy.glm.list = c()
@@ -226,12 +226,12 @@ for (variance in variance.list){
   accuracy.knn.list[counter] = knn.accuracy.two
   counter = counter + 1
 }
-plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
-lines(accuracy.lda.list, variance.list, col = "red")
-lines(accuracy.glm.list, variance.list, col = "yellow")
-lines(accuracy.knn.list, variance.list, col = "black")
+plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
+lines(variance.list, accuracy.lda.list, col = "red", type = "o")
+lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.knn.list, col = "black", type = "o")
 
-#Scenerio 3
+#Scenario 3
 accuracy.qda.list = c()
 accuracy.lda.list = c()
 accuracy.glm.list = c()
@@ -249,13 +249,13 @@ for (variance in variance.list){
   accuracy.knn.list[counter] = knn.accuracy.three
   counter = counter + 1
 }
-plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
-lines(accuracy.lda.list, variance.list, col = "red")
-lines(accuracy.glm.list, variance.list, col = "yellow")
-lines(accuracy.knn.list, variance.list, col = "black")
+plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
+lines(variance.list, accuracy.lda.list, col = "red", type = "o")
+lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.knn.list, col = "black", type = "o")
 
 
-#Scenerio 4
+#Scenario 4
 accuracy.qda.list = c()
 accuracy.lda.list = c()
 accuracy.glm.list = c()
@@ -272,10 +272,10 @@ for (variance in variance.list){
   accuracy.knn.list[counter] = knn.accuracy.four
   counter = counter + 1
 }
-plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
-lines(accuracy.lda.list, variance.list, col = "red")
-lines(accuracy.glm.list, variance.list, col = "yellow")
-lines(accuracy.knn.list, variance.list, col = "black")
+plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
+lines(variance.list, accuracy.lda.list, col = "red", type = "o")
+lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.knn.list, col = "black", type = "o")
 
 
 #used to determine which of the four models had the highest accuracy for each scenario. Useful
