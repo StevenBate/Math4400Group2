@@ -105,6 +105,7 @@ scenario.two = function(){
   }
   
   test.index = train_Test_Split(df, 1)
+  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
   qda.accuracy = generate.qda(df.train, df.test)
   lda.accuracy = generate.lda(df.train, df.test)
   logistic.accuracy = generate.logistic(df.train, df.test)
@@ -120,6 +121,7 @@ scenario.three = function(){
   df = data.generate(1, -1, 1, n, 20)
   
   test.index = train_Test_Split(df, 1)
+  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
   qda.accuracy = generate.qda(df.train, df.test)
   lda.accuracy = generate.lda(df.train, df.test)
   logistic.accuracy = generate.logistic(df.train, df.test)
@@ -142,6 +144,7 @@ scenario.four = function(){
   }
   
   test.index = train_Test_Split(df, 1)
+  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
   qda.accuracy = generate.qda(df.train, df.test)
   lda.accuracy = generate.lda(df.train, df.test)
   logistic.accuracy = generate.logistic(df.train, df.test)
