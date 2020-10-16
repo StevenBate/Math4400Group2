@@ -80,18 +80,37 @@ plotter = function(){
   plot(variance)
 }
 
+generate_accuracy = function(){
+  accuracies = c()
+  knn.accuracy = c()
+  qda.accuracy = c()
+  lda.accuracy = c()
+  logistic.accuracy = c()
+  
+  for (count in c(1:10)){
+    test.index = train_Test_Split(df, count)
+    knn.accuracy[count] = generate.knn(train.Y, test.X, train.X, test.Y)
+    qda.accuracy[count] = generate.qda(df.train, df.test)
+    lda.accuracy[count] = generate.lda(df.train, df.test)
+    logistic.accuracy[count] = generate.logistic(df.train, df.test)
+  }
+  
+  accuracies[1] = mean(knn.accuracy)
+  accuracies[2] = mean(qda.accuracy)
+  accuracies[3] = mean(lda.accuracy)
+  accuracies[4] = mean(logistic.accuracy)
+  
+  return(accuracies)
+}
+
 scenario.one = function(df){
   
-  test.index = train_Test_Split(df, 1)
-  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
-  qda.accuracy = generate.qda(df.train, df.test)
-  lda.accuracy = generate.lda(df.train, df.test)
-  logistic.accuracy = generate.logistic(df.train, df.test)
+  accuracies = generate_accuracy()
   
-  assign("knn.accuracy.one", knn.accuracy, envir = .GlobalEnv)
-  assign("qda.accuracy.one", qda.accuracy, envir = .GlobalEnv)
-  assign("lda.accuracy.one", lda.accuracy, envir = .GlobalEnv)
-  assign("logistic.accuracy.one", logistic.accuracy, envir = .GlobalEnv)
+  assign("knn.accuracy.one", accuracies[1], envir = .GlobalEnv)
+  assign("qda.accuracy.one", accuracies[2], envir = .GlobalEnv)
+  assign("lda.accuracy.one", accuracies[3], envir = .GlobalEnv)
+  assign("logistic.accuracy.one", accuracies[4], envir = .GlobalEnv)
 }
 
 scenario.two = function(df){
@@ -103,30 +122,23 @@ scenario.two = function(df){
     }
   }
   
-  test.index = train_Test_Split(df, 1)
-  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
-  qda.accuracy = generate.qda(df.train, df.test)
-  lda.accuracy = generate.lda(df.train, df.test)
-  logistic.accuracy = generate.logistic(df.train, df.test)
+  accuracies = generate_accuracy()
   
-  assign("knn.accuracy.two", knn.accuracy, envir = .GlobalEnv)
-  assign("qda.accuracy.two", qda.accuracy, envir = .GlobalEnv)
-  assign("lda.accuracy.two", lda.accuracy, envir = .GlobalEnv)
-  assign("logistic.accuracy.two", logistic.accuracy, envir = .GlobalEnv)
+  assign("knn.accuracy.two", accuracies[1], envir = .GlobalEnv)
+  assign("qda.accuracy.two", accuracies[2], envir = .GlobalEnv)
+  assign("lda.accuracy.two", accuracies[3], envir = .GlobalEnv)
+  assign("logistic.accuracy.two", accuracies[4], envir = .GlobalEnv)
 }
 
 scenario.three = function(df){
   
-  test.index = train_Test_Split(df, 1)
-  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
-  qda.accuracy = generate.qda(df.train, df.test)
-  lda.accuracy = generate.lda(df.train, df.test)
-  logistic.accuracy = generate.logistic(df.train, df.test)
   
-  assign("knn.accuracy.three", knn.accuracy, envir = .GlobalEnv)
-  assign("qda.accuracy.three", qda.accuracy, envir = .GlobalEnv)
-  assign("lda.accuracy.three", lda.accuracy, envir = .GlobalEnv)
-  assign("logistic.accuracy.three", logistic.accuracy, envir = .GlobalEnv)
+  accuracies = generate_accuracy()
+  
+  assign("knn.accuracy.three", accuracies[1], envir = .GlobalEnv)
+  assign("qda.accuracy.three", accuracies[2], envir = .GlobalEnv)
+  assign("lda.accuracy.three", accuracies[3], envir = .GlobalEnv)
+  assign("logistic.accuracy.three", accuracies[4], envir = .GlobalEnv)
 }
 
 scenario.four = function(df){
@@ -138,16 +150,12 @@ scenario.four = function(df){
     }
   }
   
-  test.index = train_Test_Split(df, 1)
-  knn.accuracy = generate.knn(train.Y, test.X, train.X, test.Y)
-  qda.accuracy = generate.qda(df.train, df.test)
-  lda.accuracy = generate.lda(df.train, df.test)
-  logistic.accuracy = generate.logistic(df.train, df.test)
+  accuracies = generate_accuracy()
   
-  assign("knn.accuracy.four", knn.accuracy, envir = .GlobalEnv)
-  assign("qda.accuracy.four", qda.accuracy, envir = .GlobalEnv)
-  assign("lda.accuracy.four", lda.accuracy, envir = .GlobalEnv)
-  assign("logistic.accuracy.four", logistic.accuracy, envir = .GlobalEnv)
+  assign("knn.accuracy.four", accuracies[1], envir = .GlobalEnv)
+  assign("qda.accuracy.four", accuracies[2], envir = .GlobalEnv)
+  assign("lda.accuracy.four", accuracies[3], envir = .GlobalEnv)
+  assign("logistic.accuracy.four", accuracies[4], envir = .GlobalEnv)
 }
 
 
@@ -156,78 +164,118 @@ scenario.four = function(df){
 sampleSize = 50
 df = data.generate(1,-1, 1, sampleSize, 2)
 scenario.one(df)
+
 sampleSize = 500
 df = data.generate(1,-1, 1, sampleSize, 2)
 scenario.two(df)
+
 sampleSize = 50
 df = data.generate(1,-1, 1, sampleSize, 2)
 scenario.three(df)
+
 sampleSize = 500
 df = data.generate(1,-1, 1, sampleSize, 2)
 scenario.four(df)
 
 
 
+#Graphs!----------------------------------------------------------------------------
 #Here for different variances
 variance.list = c(.5, 1, 1.5, 2, 2.5, 3)
-#Scenerio 2
-accuary.qda.list = c()
-accuary.lda.list = c()
-accuary.glm.list = c()
-accuary.knn.list = c()
 
-counter = 0
+#Scenerio 1
+accuracy.qda.list = c()
+accuracy.lda.list = c()
+accuracy.glm.list = c()
+accuracy.knn.list = c()
+
+counter = 1
 for (variance in variance.list){
+  print(variance)
+  sampleSize = 500
+  df = data.generate(1,-1, variance, sampleSize, 2)
+  scenario.one(df)
+  
+  accuracy.qda.list[counter] = qda.accuracy.one
+  accuracy.lda.list[counter] = lda.accuracy.one
+  accuracy.glm.list[counter] = logistic.accuracy.one
+  accuracy.knn.list[counter] = knn.accuracy.one
+  counter = counter + 1
+}
+plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
+lines(accuracy.lda.list, variance.list, col = "red")
+lines(accuracy.glm.list, variance.list, col = "yellow")
+lines(accuracy.knn.list, variance.list, col = "black")
+
+#Scenerio 2
+accuracy.qda.list = c()
+accuracy.lda.list = c()
+accuracy.glm.list = c()
+accuracy.knn.list = c()
+
+counter = 1
+for (variance in variance.list){
+  print(variance)
   sampleSize = 500
   df = data.generate(1,-1, variance, sampleSize, 2)
   scenario.two(df)
-  accuary.qda.list[counter] = qda.accuracy.two
-  accuary.lda.list[counter] = lda.accuracy.two
-  accuary.glm.list[counter] = glm.accuracy.two
-  accuary.knn.list[counter] = knn.accuracy.two
+  
+  accuracy.qda.list[counter] = qda.accuracy.two
+  accuracy.lda.list[counter] = lda.accuracy.two
+  accuracy.glm.list[counter] = logistic.accuracy.two
+  accuracy.knn.list[counter] = knn.accuracy.two
   counter = counter + 1
 }
-plot(accuracy.qsa.list, variance.list)
-
+plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
+lines(accuracy.lda.list, variance.list, col = "red")
+lines(accuracy.glm.list, variance.list, col = "yellow")
+lines(accuracy.knn.list, variance.list, col = "black")
 
 #Scenerio 3
-accuary.qda.list = c()
-accuary.lda.list = c()
-accuary.glm.list = c()
-accuary.knn.list = c()
+accuracy.qda.list = c()
+accuracy.lda.list = c()
+accuracy.glm.list = c()
+accuracy.knn.list = c()
 
-counter = 0
+counter = 1
 for (variance in variance.list){
   sampleSize = 50
   df = data.generate(1, -1, variance, sampleSize, 20)
   scenario.three(df)
-  accuary.qda.list[counter] = qda.accuracy.three
-  accuary.lda.list[counter] = ldaa.accuracy.three
-  accuary.glm.list[counter] = glm.accuracy.three
-  accuary.knn.list[counter] = knn.accuracy.three
+  
+  accuracy.qda.list[counter] = qda.accuracy.three
+  accuracy.lda.list[counter] = lda.accuracy.three
+  accuracy.glm.list[counter] = logistic.accuracy.three
+  accuracy.knn.list[counter] = knn.accuracy.three
   counter = counter + 1
 }
-plot(accuracy.qsa.list, variance.list)
+plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
+lines(accuracy.lda.list, variance.list, col = "red")
+lines(accuracy.glm.list, variance.list, col = "yellow")
+lines(accuracy.knn.list, variance.list, col = "black")
 
 
 #Scenerio 4
-accuary.qda.list = c()
-accuary.lda.list = c()
-accuary.glm.list = c()
-accuary.knn.list = c()
+accuracy.qda.list = c()
+accuracy.lda.list = c()
+accuracy.glm.list = c()
+accuracy.knn.list = c()
 
-counter = 0
+counter = 1
 for (variance in variance.list){
   sampleSize = 500
   df = data.generate(1, -1, variance, sampleSize, 20)
   scenario.four(df)
-  accuary.qda.list[counter] = qda.accuracy.four
-  accuary.lda.list[counter] = ldaa.accuracy.four
-  accuary.glm.list[counter] = glm.accuracy.four
-  accuary.knn.list[counter] = knn.accuracy.four
+  accuracy.qda.list[counter] = qda.accuracy.four
+  accuracy.lda.list[counter] = lda.accuracy.four
+  accuracy.glm.list[counter] = logistic.accuracy.four
+  accuracy.knn.list[counter] = knn.accuracy.four
   counter = counter + 1
 }
-plot(accuracy.qsa.list, variance.list)
+plot(accuracy.qda.list, variance.list, col = "blue", type = "o", ylab = "Variance", xlab = "Accuracy", main = "Variance vs Accuracy")
+lines(accuracy.lda.list, variance.list, col = "red")
+lines(accuracy.glm.list, variance.list, col = "yellow")
+lines(accuracy.knn.list, variance.list, col = "black")
 
 
 #used to determine which of the four models had the highest accuracy for each scenario. Useful
