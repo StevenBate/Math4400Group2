@@ -107,7 +107,9 @@ scenario.two = function(){
   test.index = train_Test_Split(df, 1)
   qda.accuracy = generate.qda(df.train, df.test)
   lda.accuracy = generate.lda(df.train, df.test)
+  logistic.accuracy = generate.logistic(df.train, df.test)
   
+  assign("knn.accuracy.two", knn.accuracy, envir = .GlobalEnv)
   assign("qda.accuracy.two", qda.accuracy, envir = .GlobalEnv)
   assign("lda.accuracy.two", lda.accuracy, envir = .GlobalEnv)
   assign("logistic.accuracy.two", logistic.accuracy, envir = .GlobalEnv)
@@ -122,6 +124,7 @@ scenario.three = function(){
   lda.accuracy = generate.lda(df.train, df.test)
   logistic.accuracy = generate.logistic(df.train, df.test)
   
+  assign("knn.accuracy.three", knn.accuracy, envir = .GlobalEnv)
   assign("qda.accuracy.three", qda.accuracy, envir = .GlobalEnv)
   assign("lda.accuracy.three", lda.accuracy, envir = .GlobalEnv)
   assign("logistic.accuracy.three", logistic.accuracy, envir = .GlobalEnv)
@@ -141,14 +144,17 @@ scenario.four = function(){
   test.index = train_Test_Split(df, 1)
   qda.accuracy = generate.qda(df.train, df.test)
   lda.accuracy = generate.lda(df.train, df.test)
+  logistic.accuracy = generate.logistic(df.train, df.test)
   
+  assign("knn.accuracy.four", knn.accuracy, envir = .GlobalEnv)
   assign("qda.accuracy.four", qda.accuracy, envir = .GlobalEnv)
   assign("lda.accuracy.four", lda.accuracy, envir = .GlobalEnv)
-  assign("logistic.accuracy.fout", logistic.accuracy, envir = .GlobalEnv)
+  assign("logistic.accuracy.four", logistic.accuracy, envir = .GlobalEnv)
 }
 
 
 #Main, run from here.
+scenario.one()
 scenario.two()
 scenario.three()
 scenario.four()
