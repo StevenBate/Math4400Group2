@@ -251,7 +251,7 @@ for (variance in variance.list){
 }
 plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
 lines(variance.list, accuracy.lda.list, col = "red", type = "o")
-lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.glm.list, col = "#006633", type = "o")
 lines(variance.list, accuracy.knn.list, col = "black", type = "o")
 
 
