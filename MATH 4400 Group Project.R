@@ -204,8 +204,21 @@ for (variance in variance.list){
 }
 plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
 lines(variance.list, accuracy.lda.list, col = "red", type = "o")
-lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.glm.list, col = "green", type = "o")
 lines(variance.list, accuracy.knn.list, col = "black", type = "o")
+legend("bottomleft", 
+       legend = c("Qda", "Lda", "Logistic", "Knn"), 
+       col = c("blue", 
+               "red",
+               "green",
+               "black"), 
+       pch = c(17,19, 21, 23), 
+       bty = "n", 
+       pt.cex = 2, 
+       cex = 1.2, 
+       text.col = "black", 
+       horiz = F, 
+       inset = c(0.1, 0.1, .1, .1))
 
 #Scenario 2
 accuracy.qda.list = c()
@@ -228,8 +241,21 @@ for (variance in variance.list){
 }
 plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
 lines(variance.list, accuracy.lda.list, col = "red", type = "o")
-lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.glm.list, col = "green", type = "o")
 lines(variance.list, accuracy.knn.list, col = "black", type = "o")
+legend("bottomleft", 
+       legend = c("Qda", "Lda", "Logistic", "Knn"), 
+       col = c("blue", 
+               "red",
+               "green",
+               "black"), 
+       pch = c(17,19, 21, 23), 
+       bty = "n", 
+       pt.cex = 2, 
+       cex = 1.2, 
+       text.col = "black", 
+       horiz = F, 
+       inset = c(0.1, 0.1, .1, .1))
 
 #Scenario 3
 accuracy.qda.list = c()
@@ -249,11 +275,23 @@ for (variance in variance.list){
   accuracy.knn.list[counter] = knn.accuracy.three
   counter = counter + 1
 }
-plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
-lines(variance.list, accuracy.lda.list, col = "red", type = "o")
-lines(variance.list, accuracy.glm.list, col = "#006633", type = "o")
-lines(variance.list, accuracy.knn.list, col = "black", type = "o")
-
+plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05), pch = 17)
+lines(variance.list, accuracy.lda.list, col = "red", type = "o", pch = 19)
+lines(variance.list, accuracy.glm.list, col = "#006633", type = "o", pch = 21)
+lines(variance.list, accuracy.knn.list, col = "black", type = "o", pch = 23)
+legend("bottomleft", 
+       legend = c("Qda", "Lda", "Logistic", "Knn"), 
+       col = c("blue", 
+               "red",
+               "green",
+               "black"), 
+       pch = c(17,19, 21, 23), 
+       bty = "n", 
+       pt.cex = 2, 
+       cex = 1.2, 
+       text.col = "black", 
+       horiz = F, 
+       inset = c(0.1, 0.1, .1, .1))
 
 #Scenario 4
 accuracy.qda.list = c()
@@ -274,9 +312,21 @@ for (variance in variance.list){
 }
 plot(variance.list, accuracy.qda.list,col = "blue", type = "o", ylab = "Accuracy", xlab = "Variance", main = "Variance vs Accuracy", ylim=c(0.55, 1.05))
 lines(variance.list, accuracy.lda.list, col = "red", type = "o")
-lines(variance.list, accuracy.glm.list, col = "yellow", type = "o")
+lines(variance.list, accuracy.glm.list, col = "green", type = "o")
 lines(variance.list, accuracy.knn.list, col = "black", type = "o")
-
+legend("bottomleft", 
+       legend = c("Qda", "Lda", "Logistic", "Knn"), 
+       col = c("blue", 
+               "red",
+               "green",
+               "black"), 
+       pch = c(17,19, 21, 23), 
+       bty = "n", 
+       pt.cex = 2, 
+       cex = 1.2, 
+       text.col = "black", 
+       horiz = F, 
+       inset = c(0.1, 0.1, .1, .1))
 
 #used to determine which of the four models had the highest accuracy for each scenario. Useful
 #if we run our scenarios with different seeds. Feel free to edit/optimize.
@@ -297,14 +347,3 @@ determine.max.accuracy = function(){
   }
 }
 determine.max.accuracy()
-
-
-
-
-
-
-
-
-
-
-
